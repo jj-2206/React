@@ -1,19 +1,25 @@
-const App = () => {
-  const arr = Array.from(Array(100), (_, i) => i + 1);
-  console.log(arr);
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
   return (
-    <div>
-      {arr.map((item, index) => {
-        if (item % 7 === 0) {
-          return <button key={index}>7의 배수</button>;
-        } else if (item % 10 === 0) {
-          return null;
-        } else {
-          return <button key={index}>{item}</button>;
-        }
-      })}
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
-};
+}
 
 export default App;
