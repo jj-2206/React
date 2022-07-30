@@ -1,70 +1,142 @@
-# Getting Started with Create React App
+# React 실시간 강의 quiz 모음
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+quiz 1-1 (JSX 렌더시 무시되는 값)
 
-## Available Scripts
+```
+다음 코드를 render하는 경우 어떤 결과가 나오는지 확인
+```
 
-In the project directory, you can run:
+```js
+const App = () => {
+  return (
+    <>
+      <div>{[false, null, undefined, true]}</div>
+      <div>{false}</div>
+      <div>{null}</div>
+      <div>{undefined}</div>
+      <div>{true}</div>
+    </>
+  );
+};
+```
 
-### `npm start`
+quiz 1-2
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+1부터 100까지 들어있는 array가 있을 때,
+7의 배수인 경우 '7의 배수'라는 텍스트를 포함한 button 출력.
+10의 배수인 경우 출력하지 않음
+그 외엔 숫자가 들어있는 button 출력
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```js
+import React from 'react';
+// 1부터 100까지 들어있는 arr
+const arr = Array.from(Array(100), (_, i) => i + 1);
+const App = () => {
+  return <div>{/* fill here */}</div>;
+};
+export default App;
+```
 
-### `npm test`
+quiz 2-1
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+1~100 이 들어있는 button 100개를 만들고
+버튼을 클릭하면 들어있는 숫자를 alert로 띄워주기
+ex) 화면상의 34가 써져있는 button을 클릭한 경우,
+34를 alert로 띄워줌
+```
 
-### `npm run build`
+```js
+import React from 'react';
+// 1부터 100까지 들어있는 arr
+const arr = Array.from(Array(100), (_, i) => i + 1);
+const App = () => {
+  return <div>{/* fill here */}</div>;
+};
+export default App;
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+quiz 2-2
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+간단한 덧셈 계산기 만들기
+코드를 어떻게 바꿔야 아래처럼 동작할까?
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![2-2](./img/2-2.png)
 
-### `npm run eject`
+```js
+import React from 'react';
+const App = () => {
+  const [result, setResult] = React.useState(0);
+  return (
+    <>
+      <input type="number" />
+      +
+      <input type="number" />
+      =
+      <input type="number" disabled value={result} />
+      <button type="button">계산</button>
+    </>
+  );
+};
+export default App;
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+quiz 2-3
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+useRef를 사용하여, Click to Reset 버튼을 클릭하면
+input의 value를 초기화하도록 만들어보기
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```js
+const App = () => {
+  const input = React.useRef(null);
+  const handleClick = () => {
+    if (input.current) {
+    }
+  };
+  return (
+    <div>
+      <input type="text" ref={input} />
+      <button type="button" onClick={handleClick}>
+        Click to Reset
+      </button>
+    </div>
+  );
+};
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+quiz 2-4
 
-## Learn More
+```
+현재 value는 ~~~ 입니다 문구도 추가해보기
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![2-4](./img/2-4.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```js
+const App = () => {
+  const input = React.useRef(null);
+  const handleClick = () => {
+    if (input.current) {
+      input.current.value = '';
+    }
+  };
+  return (
+    <div>
+      <input type="text" ref={input} />
+      <button type="button" onClick={handleClick}>
+        Click to Reset
+      </button>
+    </div>
+  );
+};
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 진상현 강사님 자료에서 발췌했습니다.
