@@ -1,20 +1,22 @@
-import React from 'react';
-// quiz 1-2
+// quiz 2-1
+// Event Handling JSX에서는 onClick, 실행될 함수를 전달
 
+import React from 'react';
+
+const arr = Array.from(Array(100), (_, i) => i + 1);
 const App = () => {
-  const arr = Array.from(Array(100), (_, i) => i + 1);
-  console.log(arr);
   return (
     <div>
-      {arr.map((item) => {
-        if (item % 7 === 0) {
-          return <button key={item}>7의 배수</button>;
-        } else if (item % 10 === 0) {
-          return null;
-        } else {
-          return <button key={item}>{item}</button>;
-        }
-      })}
+      {arr.map((item) => (
+        <button
+          key={item}
+          onClick={() => {
+            alert(item);
+          }}
+        >
+          {item}
+        </button>
+      ))}
     </div>
   );
 };
