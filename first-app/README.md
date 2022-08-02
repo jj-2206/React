@@ -137,6 +137,92 @@ const App = () => {
 };
 ```
 
+quiz 3-1
+
+```
+reset 버튼을 누르면 input에 focus가 되도록 해보기
+```
+
+```js
+const App = () => {
+  const [value, setValue] = React.useState('');
+  const handleClick = () => {
+    setValue('');
+  };
+  return (
+    <div>
+      <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
+      <button type="button" onClick={handleClick}>
+        Click to Reset and Focus!
+      </button>
+    </div>
+  );
+};
+```
+
+quiz 3-2
+
+```
+controlled input
+유효성 검사 구현하기
+
+요구사항
+• id는 6글자 이상 20글자 이하인 경우 유효
+• password는 12글자 이상 20글자 이하인 경우 유효
+• 유효하지 않는 input 밑에 "유효하지 않은 ~~입니다." 출력
+• id와 password가 둘 다 비어있으면 회원가입 버튼 disable 처리
+• 유효하지 않은 input이 존재하는 경우 회원가입 버튼 클릭 시
+  에러 alert를 띄워주고, 해당 input reset후, focus 시켜주기
+• 모두 유효한 경우 회원가입 버튼 클릭 시 "회원가입 성공!"
+  alert 띄워주기
+```
+
+```js
+const App = () => {
+  const handleClick = () => {
+    alert('회원가입 성공!');
+  };
+  return (
+    <div>
+      <div>
+        <input type="text" name="id" placeholder="6글자 이상 20글자 이하" />
+        {/* 에러메세지 자리 */}
+      </div>
+      <div>
+        <input type="text" name="password" placeholder="12글자 이상 20글자 이하" />
+        {/* 에러메세지 자리 */}
+      </div>
+      <button type="button" onClick={handleClick} disabled={false}>
+        회원가입
+      </button>
+    </div>
+  );
+};
+```
+
+quiz 3-3
+
+```
+input value를 수정하면 3초 이후에 현재 value를 console.log
+를 통해 1회 출력하는 컴포넌트 만들기
+```
+
+```js
+import React, { useEffect } from 'react';
+const App = () => {
+  const [value, setValue] = React.useState('');
+  return (
+    <input
+      type="number"
+      onChange={(e) => {
+        setValue(e.target.value);
+      }}
+    />
+  );
+};
+export default App;
+```
+
 ---
 
 ### 진상현 강사님 자료에서 발췌했습니다.
