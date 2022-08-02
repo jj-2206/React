@@ -1,9 +1,9 @@
-// quiz 2-3
-// useRef
-// ref를 넘겨주면, 해당 dom element 를 current에 담아줌
+// quiz 2-4
+// useState, useRef
 
 import React from 'react';
 const App = () => {
+  const [value, setValue] = React.useState();
   const input = React.useRef(null);
   const handleClick = () => {
     if (input.current) {
@@ -12,11 +12,13 @@ const App = () => {
   };
   return (
     <div>
-      <input type="text" ref={input} />
+      <span> 현재 value는 {value}입니다. </span>
+      <input type="text" ref={input} onChange={(e) => setValue(e.target.value)} />
       <button type="button" onClick={handleClick}>
         Click to Reset
       </button>
     </div>
   );
 };
+
 export default App;
