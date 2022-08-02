@@ -1,51 +1,26 @@
-// quiz 2-4 +uncontrolled/ controlled input 설명
-// useState, useRef
-// uncontrolled input: span의 {value}까지 지워주지는 못한다. -> setValue("")
-// controlled input: react state로 들고있는 value를 input에 push하여 sync
-
-/* DOM에 직접 접근할 필요가 없을 때는 useState로 관리한다!
-import React from "react";
-const App = () => {
-  const [value, setValue] = React.useState();
-  const input = React.useRef(null);
-  const handleClick = () => {
-    setValue("");
-    if (input.current) {
-      input.current.value = "";
-    }
-  };
-  return (
-    <div>
-      <span> 현재 value는 {value}입니다. </span>
-      <input
-        type="text"
-        ref={input}
-        onChange={(e) => setValue(e.target.value)}
-      />
-      <button type="button" onClick={handleClick}>
-        Click to Reset
-      </button>
-    </div>
-  );
-};
-
-export default App;
-*/
+// quiz 3-1
+// useRef
+// ref는 dom을 담을 때만 쓸 수 있다? -> X
+// ref는 값이 바뀌어도 컴포넌트가 re-render 되지 않는다? -> O
+// react에 의한 re-render가 아닌, 실제 document에 존재하는 element를 직접 접근하여 수정
+// react state로는 관리할 수 없는 경우에만 사용하는 것이 적절
 
 import React from 'react';
 
 const App = () => {
-  const [state, setState] = React.useState();
+  const input = React.useRef(null);
+  const [value, setValue] = React.useState('');
   const handleClick = () => {
-    setState('');
+    setValue('');
+    if (input.current) {
+      input.current.focus();
+    }
   };
-
   return (
     <div>
-      <span> 현재 value는 {state}입니다. </span>
-      <input type="text" value={state} onChange={(e) => setState(e.target.value)} />
+      <input type="text" ref={input} value={value} onChange={(e) => setValue(e.target.value)} />
       <button type="button" onClick={handleClick}>
-        Click to Reset
+        Click to Reset and Focus!
       </button>
     </div>
   );
