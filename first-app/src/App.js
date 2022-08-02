@@ -1,17 +1,21 @@
 import React from 'react';
-// quiz 1-1
-// boolean, null, undefined는 무시됩니다.
-// false, null, undefined와 true는 유효한 자식입니다. 그저 렌더링 되지 않을 뿐입니다. 아래의 JSX 표현식들은 동일하게 렌더링됩니다.
+// quiz 1-2
+
 const App = () => {
+  const arr = Array.from(Array(100), (_, i) => i + 1);
+  console.log(arr);
   return (
-    <>
-      <div>{[false, null, undefined, true]}</div>
-      <div>{false}</div>
-      <div>{null}</div>
-      <div>{undefined}</div>
-      <div>{true}</div>
-    </>
+    <div>
+      {arr.map((item) => {
+        if (item % 7 === 0) {
+          return <button key={item}>7의 배수</button>;
+        } else if (item % 10 === 0) {
+          return null;
+        } else {
+          return <button key={item}>{item}</button>;
+        }
+      })}
+    </div>
   );
 };
-
 export default App;
