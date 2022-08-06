@@ -1,63 +1,89 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
+// 유효성 검사 구현하기 (option)
+
+const fields = [
+  {
+    key: 'id',
+    label: 'id',
+    placeholder: '6글자 이상 20글자 이하',
+    initialValue: '',
+    checkValid: (v) => v.length >= 6 && v.length <= 20,
+  },
+  {
+    key: 'pw',
+    label: 'password',
+    placeholder: '6글자 이상 20글자 이하',
+    initialValue: '',
+    checkValid: (v) => v.length >= 12 && v.length <= 20,
+  },
+  {
+    key: 'name',
+    label: '이름',
+    initialValue: '',
+    placeholder: '이름을 입력하세요.',
+    checkValid: (v) => v.length >= 1 && v.length <= 5,
+  },
+  {
+    key: 'email',
+    label: '이메일',
+    initialValue: '',
+    placeholder: '이메일을 입력하세요.',
+    checkValid: (v) => v,
+    //^([0-9a-zA-Z]+)@([0-9a-zA-Z]+)(\.[0-9a-zA-Z]+)$/
+  },
+];
 
 const App = () => {
-  const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
-
-  const idRef = useRef(null);
-  const pwRef = useRef(null);
-
-  const idError = '유효하지 않은 id입니다.';
-  const pwError = '유효하지 않은 password입니다.';
-
-  const idCheck = id.length >= 6 && id.length <= 20;
-  const pwCheck = pw.length >= 12 && pw.length <= 20;
-
-  const handleChange = (event) => {
-    if (event.target.name === 'id') {
-      setId(event.target.value);
-    }
-    if (event.target.name === 'pw') {
-      setPw(event.target.value);
-    }
-  };
+  const [values, setValues] = React.useState(
+    fields.reduce(
+      (acc, { key, initialValue }) => ({ ...acc, [key]: initialValue }),
+      {}
+    )
+  );
+  const refs = React.useRef(Array.from(fields.length, () => null));
+  const valids = fields.map(({ key, checkValid }) => checkValid(values[key]));
+  const isButtonDisabled = !Object.values(values).some((value) => value.length);
 
   const handleClick = () => {
-    if (!idCheck) {
-      alert(idError);
-      setId('');
-      idRef.current.focus();
-    } else if (!pwCheck) {
-      alert(pwError);
-      setPw('');
-      pwRef.current.focus();
-    } else alert('회원가입 성공!');
+    const isAllValid = valids.every((isValid, i) => {
+      const { key, initialValue, label } = fields[i];
+      if (!isValid) {
+        setValues((prev) => ({ ...prev, [key]: initialValue }));
+        refs.current[i].focus();
+        alert(`유효하지 않은 ${label}입니다`);
+      }
+      return isValid;
+    });
+    if (!isAllValid) {
+      return;
+    }
+    alert('회원가입 성공!');
   };
+
+  const handleChangeValue = (e) => {
+    setValues((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   return (
     <div>
-      <div>
-        <input
-          type="text"
-          name="id"
-          ref={idRef}
-          value={id}
-          onChange={handleChange}
-          placeholder="6글자 이상 20글자 이하"
-        />
-        <div>{idCheck ? null : idError}</div>
-      </div>
-      <div>
-        <input
-          type="text"
-          name="pw"
-          ref={pwRef}
-          value={pw}
-          onChange={handleChange}
-          placeholder="12글자 이상 20글자 이하"
-        />
-        <div>{pwCheck ? null : pwError}</div>
-      </div>
-      <button type="button" onClick={handleClick} disabled={!(id || pw)}>
+      {fields.map(({ key, label, placeholder }, i) => (
+        <div key={key}>
+          <input
+            type="text"
+            ref={(ref) => (refs.current[i] = ref)}
+            name={key}
+            value={values[key]}
+            placeholder={placeholder}
+            onChange={handleChangeValue}
+          />
+          {/* 에러메세지 자리 */}
+          {!valids[i] && `유효하지 않은 ${label}입니다`}
+        </div>
+      ))}
+      <button type="button" onClick={handleClick} disabled={isButtonDisabled}>
         회원가입
       </button>
     </div>
