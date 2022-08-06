@@ -1,14 +1,14 @@
 // quiz 4-2
-
-// cleanup 함수 사용, 권장하는 방법!
+// 클릭했을 때만 input value 화면에 출력!
 
 import React, { useEffect } from 'react';
 const App = () => {
+  const [show, setShow] = React.useState('');
   const [value, setValue] = React.useState('');
 
   useEffect(() => {
     const onClick = () => {
-      console.log(`현재 value는 ${value}입니다!`);
+      setShow(value);
     };
     document.addEventListener('click', onClick);
     function cleanup() {
@@ -18,12 +18,16 @@ const App = () => {
   }, [value]);
 
   return (
-    <input
-      value={value}
-      onChange={(e) => {
-        setValue(e.target.value);
-      }}
-    />
+    <div>
+      <input
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+      />
+      <br />
+      {show && `현재 value는 ${show}입니다!`}
+    </div>
   );
 };
 export default App;
