@@ -1,26 +1,21 @@
-// quiz 4-1
+// quiz 4-2
 
-// useRef 없이 useState의 setter함수로 최신 value를 가져와서 출력할 수도 있습니다.
-// 지양합시다 패턴. -> useEffect의 클린업 함수를 사용하는 것이 좋습니다.
+// cleanup 함수 사용, 권장하는 방법!
 
 import React, { useEffect } from 'react';
 const App = () => {
   const [value, setValue] = React.useState('');
 
-  useEffect(
-    () => {
-      const onClick = () => {
-        setValue((prev) => {
-          console.log(`현재 value는 ${prev} 입니다!`);
-          return prev;
-        });
-      };
-      document.addEventListener('click', onClick);
-    },
-    [
-      //value
-    ]
-  );
+  useEffect(() => {
+    const onClick = () => {
+      console.log(`현재 value는 ${value}입니다!`);
+    };
+    document.addEventListener('click', onClick);
+    function cleanup() {
+      document.removeEventListener('click', onClick);
+    }
+    return cleanup;
+  }, [value]);
 
   return (
     <input
