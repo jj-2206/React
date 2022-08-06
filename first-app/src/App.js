@@ -1,16 +1,20 @@
-// quiz 4-3
+// quiz 4-4
 
 import React, { useEffect } from 'react';
 
-// useEffect 사용해서 만든 답안
+// cleanup 함수로 clearTimeout() 를 합니다.
+// 타이머 기능!
 
 const App = () => {
   const [value, setValue] = React.useState('');
 
   useEffect(() => {
-    setTimeout(() => {
+    const timerId = setTimeout(() => {
       console.log(value);
     }, 3000);
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [value]);
 
   return (
@@ -25,22 +29,5 @@ const App = () => {
     </div>
   );
 };
-
-// JavaScript의 eventlistener만으로도 구현 가능합니다,,,
-
-// const App = () => {
-//   return (
-//     <>
-//       <input
-//         onChange={(e) => {
-//           const value = e.target.value;
-//           setTimeout(() => {
-//             console.log(value);
-//           }, 3000);
-//         }}
-//       />
-//     </>
-//   );
-// };
 
 export default App;
