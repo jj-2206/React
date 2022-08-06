@@ -1,20 +1,16 @@
-// quiz 4-2
-// 클릭했을 때만 input value 화면에 출력!
+// quiz 4-3
 
 import React, { useEffect } from 'react';
+
+// useEffect 사용해서 만든 답안
+
 const App = () => {
-  const [show, setShow] = React.useState('');
   const [value, setValue] = React.useState('');
 
   useEffect(() => {
-    const onClick = () => {
-      setShow(value);
-    };
-    document.addEventListener('click', onClick);
-    function cleanup() {
-      document.removeEventListener('click', onClick);
-    }
-    return cleanup;
+    setTimeout(() => {
+      console.log(value);
+    }, 3000);
   }, [value]);
 
   return (
@@ -26,8 +22,25 @@ const App = () => {
         }}
       />
       <br />
-      {show && `현재 value는 ${show}입니다!`}
     </div>
   );
 };
+
+// JavaScript의 eventlistener만으로도 구현 가능합니다,,,
+
+// const App = () => {
+//   return (
+//     <>
+//       <input
+//         onChange={(e) => {
+//           const value = e.target.value;
+//           setTimeout(() => {
+//             console.log(value);
+//           }, 3000);
+//         }}
+//       />
+//     </>
+//   );
+// };
+
 export default App;
