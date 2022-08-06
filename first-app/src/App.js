@@ -1,8 +1,4 @@
-// quiz 4-5
-
-// useEffect함수가 리턴하는 함수가 clear 함수!
-// 3초가 지나면 -1초가 되는 타이머를 멈춰줘야하기 때문에,
-// line 20에 clearInterval(intervalTimer) 작성.
+// quiz 4-6
 
 import React, { useEffect } from 'react';
 
@@ -16,7 +12,7 @@ const App = () => {
       setCount((prev) => prev - 1);
     }, 1000);
     const timerId = setTimeout(() => {
-      console.log(value);
+      // console.log(value);
       clearInterval(intervalTimer);
     }, 3000);
     return () => {
@@ -35,6 +31,8 @@ const App = () => {
       />
       <br />
       {`남은 시간 ${count}초`}
+      {count === 0 && `값은 ${value}입니다.`}
+      {/* count value가 0일 때 value값 출력 */}
     </div>
   );
 };
