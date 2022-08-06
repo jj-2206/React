@@ -28,8 +28,10 @@ const fields = [
     label: '이메일',
     initialValue: '',
     placeholder: '이메일을 입력하세요.',
-    checkValid: (v) => v,
-    //^([0-9a-zA-Z]+)@([0-9a-zA-Z]+)(\.[0-9a-zA-Z]+)$/
+    checkValid: (v) => {
+      const pattern = /^([0-9a-zA-Z]+)@([0-9a-zA-Z]+)(\.[0-9a-zA-Z]+)$/;
+      return v.match(pattern);
+    },
   },
 ];
 
