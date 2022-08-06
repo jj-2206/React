@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
+// useRef로 DOM에 직접 접근, 지양해야하는 것 중 하나.
+
 const App = () => {
   const [value, setValue] = React.useState('');
   const ref = React.useRef();
