@@ -249,6 +249,9 @@ quiz 4-1
 
 ```
 document를 클릭하면 input의 value를 console에 출력하도록 작성하기
+
+cleanup 함수 사용X
+click했을 때 console이 한번만 나와야 합니다!
 ```
 
 ```js
@@ -298,6 +301,9 @@ quiz 4-3
 ```
 input value를 수정하면 3초 이후에 현재 value를 console.log
 를 통해 1회 출력하는 컴포넌트 만들기
+
+12345를 빠르게 입력하면,
+3초 뒤에 1, 12, 123, 1234, 12345가 순서대로 출력
 ```
 
 ```js
