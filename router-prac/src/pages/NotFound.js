@@ -5,7 +5,7 @@ const NotFound = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '64',
+        fontSize: '100',
         position: 'absolute',
         width: '100%',
         height: '100%',

@@ -1,6 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const Home = () => {
+  const MyPage = () => {
+    const isLoggedIn = false;
+
+    if (!isLoggedIn) {
+      return <Navigate to="/login" replace={true} />;
+    }
+
+    return <div>마이 페이지</div>;
+  };
+
   return (
     <div>
       <h1>홈</h1>
@@ -16,7 +26,10 @@ const Home = () => {
           <Link to="/profile/1">yw의 프로필</Link>
         </li>
         <li>
-          <Link to="/profile/void">존재하지 않는 프로필</Link>
+          <Link to="*">존재하지 않는 프로필</Link>
+        </li>
+        <li>
+          <Link to="/mypage">마이 페이지</Link>
         </li>
         <li>
           <Link to="/articles">게시글 목록</Link>
