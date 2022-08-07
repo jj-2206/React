@@ -19,7 +19,7 @@ const About = () => {
   return (
     <div>
       <h1>소개</h1>
-      <p>리액트 라우터를 사용해 보는 프로젝트입니다.</p>
+      <p>about 컴포넌트 입니다</p>
       <p>detail: {detail}</p>
       <p>mode: {mode}</p>
       <p>쿼리 스트링: {location.search}</p>
