@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div>
       <h1>홈</h1>
-      <p>가장 먼저 보여지는 페이지 입니다</p>
+      <p>홈 컴포넌트 입니다</p>
       <ul>
         <li>
           <Link to="/about"> 소개 </Link>
@@ -18,8 +18,13 @@ const Home = () => {
         <li>
           <Link to="/profile/void">존재하지 않는 프로필</Link>
         </li>
+        <li>
+          <Link to="/articles">게시글 목록</Link>
+        </li>
       </ul>
+      <p>Home.js</p>
     </div>
   );
 };
+
 export default Home;
