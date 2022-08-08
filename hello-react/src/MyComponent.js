@@ -11,7 +11,6 @@ const MyComponent = ({ name, favoriteNumber, children }) => {
       <br />
       제가 좋아하는 숫자는 {favoriteNumber}입니다.
       <br />
-      <Say />
     </div>
   );
 };
