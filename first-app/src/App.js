@@ -1,5 +1,6 @@
-// 5-1
-import React from 'react';
+// 5-2
+
+import React, { useState } from 'react';
 import {
   BrowserRouter,
   useParams,
@@ -8,20 +9,52 @@ import {
   Link,
 } from 'react-router-dom';
 
-const Hello = () => {
+const Post = ({ list }) => {
   const params = useParams();
-  console.log('params객체: ', params);
   return (
     <>
-      this is Hello Component <br />
-      Hello {params.id}!
+      <h1>Post Component</h1>
+      id: {params.id}
+      <h3>글내용: {list[params.id]}</h3>
       <br />
-      <Link to="/">return to form </Link>
+      <Link to="/hello/:id">return to 글쓰기 화면</Link>
+    </>
+  );
+};
+
+const Hello = ({ list, setList }) => {
+  const [value, setValue] = useState('');
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+  const handleClick = () => {
+    setList(list.concat([value]));
+    setValue('');
+  };
+  return (
+    <>
+      <h1>this is Hello Component</h1>
+      <h2>글쓰기 화면</h2>
+      <br />
+      <input value={value} type="text" onChange={handleChange} />
+      <button onClick={handleClick}>등록</button>
+      <br />
+      <p>----글 리스트----</p>
+      {list.map((item, i) => (
+        <Link key={i} to={`/post/${i}`}>
+          <div>{item}</div>
+        </Link>
+      ))}
+      <p>-------------------</p>
+      <div>
+        <Link to="/">return to form</Link>
+      </div>
     </>
   );
 };
 
 const App = () => {
+  const [list, setList] = useState([]);
   return (
     <BrowserRouter>
       <Routes>
@@ -30,7 +63,11 @@ const App = () => {
         {/* case: 주소창이 "/" 면 <Form /> 렌더; break; */}
         <Route path="/" element={<Form />} />
         {/* case: 주소창이 "/hello/아무문자열" 이면 <Hello /> 렌더; break; */}
-        <Route path="/hello/:id" element={<Hello />} />
+        <Route
+          path="/hello/:id"
+          element={<Hello list={list} setList={setList} />}
+        />
+        <Route path="/post/:id" element={<Post list={list} />} />
       </Routes>
     </BrowserRouter>
   );
@@ -51,13 +88,13 @@ const fields = [
     initialValue: '',
     checkValid: (v) => v.length >= 12 && v.length <= 20,
   },
-  {
-    key: 'name',
-    label: '이름',
-    initialValue: '',
-    placeholder: '아무이름',
-    checkValid: (v) => v.length >= 1 && v.length <= 5,
-  },
+  // {
+  //   key: 'name',
+  //   label: '이름',
+  //   initialValue: '',
+  //   placeholder: '아무이름',
+  //   checkValid: (v) => v.length >= 1 && v.length <= 5,
+  // },
 ];
 
 const Form = () => {
