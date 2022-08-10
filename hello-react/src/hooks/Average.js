@@ -1,4 +1,7 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
+// useMemo 연산을 최적화할 수 있다
+// useCallback 렌더링을 최적화할 수 있다
+// useCallback(()=>[])
 
 const getAverage = (numbers) => {
   console.log('평균값 계산 중...');
@@ -11,15 +14,15 @@ const Average = () => {
   const [list, setList] = useState([]);
   const [number, setNumber] = useState('');
 
-  const onChange = (e) => {
+  const onChange = useCallback((e) => {
     setNumber(e.target.value);
-  };
-  const onInsert = () => {
+  }, []); // 컴포넌트가 처음 렌더링될 때만 함수 생성
+
+  const onInsert = useCallback(() => {
     const nextList = list.concat(parseInt(number));
-    console.log(nextList);
     setList(nextList);
     setNumber('');
-  };
+  }, [number, list]); // number 혹은 list가 바뀌었을 때만 함수 생성
 
   const avg = useMemo(() => getAverage(list), [list]);
   // list의 배열이 바뀔 때만 getAverage()가 호출됩니다.
