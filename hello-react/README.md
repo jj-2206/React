@@ -2,6 +2,5 @@
 
 `yarn start`
 
-`yarn add sass`  
-`yarn add classnames`  
-`yarn add styled-components`
+`yarn add sass classnames styled-components`  
+`yarn add react-icons`
