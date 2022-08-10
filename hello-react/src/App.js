@@ -1,5 +1,5 @@
-import Average from './hooks/Average';
+import Info from './hooks/Info';
 
-const App = () => <Average />;
+const App = () => <Info />;
 
 export default App;
