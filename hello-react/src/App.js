@@ -1,5 +1,5 @@
-import Info from './hooks/Info';
+import SassComponent from './SassComponent';
 
-const App = () => <Info />;
+const App = () => <SassComponent />;
 
 export default App;
