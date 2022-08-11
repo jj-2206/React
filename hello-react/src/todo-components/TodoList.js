@@ -1,12 +1,17 @@
 import TodoListitem from './TodoListitem';
 import './TodoList.scss';
 
-const TodoList = () => {
+const TodoList = ({ todos, onRemove, onToggle }) => {
   return (
-    <div classname="TodoList">
-      <TodoListitem />
-      <TodoListitem />
-      <TodoListitem />
+    <div className="TodoList">
+      {todos.map((todo) => (
+        <TodoListitem
+          todo={todo}
+          key={todo.id}
+          onRemove={onRemove}
+          onToggle={onToggle}
+        />
+      ))}
     </div>
   );
 };
