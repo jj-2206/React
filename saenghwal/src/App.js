@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react';
 
 // 컴포넌트!
 // 속성 prop
@@ -31,7 +32,7 @@ const Nav = (props) => {
           href={'/read/' + t.id}
           onClick={(event) => {
             event.preventDefault();
-            props.onChangeMode(event.target.id);
+            props.onChangeMode(Number(event.target.id));
           }}
         >
           {t.title}
@@ -56,26 +57,44 @@ const Article = (props) => {
 };
 
 function App() {
+  const [mode, setMode] = useState('WELCOME');
+  const [id, setId] = useState(null);
+
   const topics = [
     { id: 1, title: 'html', body: 'html is...' },
     { id: 2, title: 'css', body: 'css is...' },
     { id: 3, title: 'js', body: 'js is...' },
   ];
+  let content = null;
+  if (mode === 'WELCOME') {
+    content = <Article title="Welcome" body="Hello, WEB"></Article>;
+  } else if (mode === 'READ') {
+    let title,
+      body = null;
+    for (let i = 0; i < topics.length; i++) {
+      if (topics[i].id === id) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = <Article title={title} body={body}></Article>;
+  }
   return (
     <div>
       <Header
         title="REACT"
         onChangeMode={() => {
-          alert('Header');
+          setMode('WELCOME');
         }}
       ></Header>
       <Nav
         topics={topics}
-        onChangeMode={(id) => {
-          alert(id);
+        onChangeMode={(_id) => {
+          setMode('READ');
+          setId(_id);
         }}
       ></Nav>
-      <Article title="Welcome" body="Hello, WEB"></Article>
+      {content}
     </div>
   );
 }
