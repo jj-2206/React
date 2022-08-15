@@ -411,6 +411,34 @@ black -> blue(입력값) -> red
 animation, keyframes 사용
 ```
 
+quiz 7-1
+
+```
+회원가입 form 컴포넌트
+react-router와 context를 잘 활용하여 개선시켜보자
+context를 활용하여 name을 저장
+name이 저장되어있는 경우 (회원가입 이후)
+-> "/" 로 접속하면 name을 보여주는 페이지 렌더
+name이 저장되어있지 않은 경우 (회원가입 이전)
+-> "/" 로 접속하면 "/register" 로 redirect
+```
+
+quiz 8-1
+
+```
+기존 context api를 사용하여 구현한 Form<->Home 이동 앱을
+redux로 리팩토링해보기
+```
+
+quiz 8-2
+
+```
+기존 react-redux를 사용하지 않고 리팩토링한 Form<->Home
+이동 앱을, react-redux를 사용하여 리팩토링해보기
+context api 때와는 다르게, consume하는 값이 바뀌지 않으면
+re-render되지 않는지 확인해보기
+```
+
 ---
 
 ##### 진상현 강사님 자료에서 발췌했습니다.
