@@ -151,11 +151,7 @@ const App = () => {
   };
   return (
     <div>
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
+      <input type="text" value={value} onChange={(e) => setValue(e.target.value)} />
       <button type="button" onClick={handleClick}>
         Click to Reset and Focus!
       </button>
@@ -193,11 +189,7 @@ const App = () => {
         {/* 에러메세지 자리 */}
       </div>
       <div>
-        <input
-          type="text"
-          name="password"
-          placeholder="12글자 이상 20글자 이하"
-        />
+        <input type="text" name="password" placeholder="12글자 이상 20글자 이하" />
         {/* 에러메세지 자리 */}
       </div>
       <button type="button" onClick={handleClick} disabled={false}>
@@ -230,11 +222,7 @@ const App = () => {
         {/* 에러메세지 자리 */}
       </div>
       <div>
-        <input
-          type="text"
-          name="password"
-          placeholder="12글자 이상 20글자 이하"
-        />
+        <input type="text" name="password" placeholder="12글자 이상 20글자 이하" />
         {/* 에러메세지 자리 */}
       </div>
       <button type="button" onClick={handleClick} disabled={false}>
@@ -413,6 +401,14 @@ quiz 5-2
 3. 게시글 클릭 시 해당 게시글 detail 페이지(/post/:id로 이동)
 4. detail 페이지에서 뒤로가기 클릭 다시 글쓰기 페이지로 이동
 (기존 게시글들 남아있어야함)
+```
+
+quiz 6-1
+
+```
+input에 입력한 값으로 변화하는 애니메이션 구현하기
+black -> blue(입력값) -> red
+animation, keyframes 사용
 ```
 
 ---
