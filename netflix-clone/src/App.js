@@ -1,12 +1,14 @@
-import React from "react";
-import Row from "./Row.js";
-import Banner from "./Banner.js";
-import requests from "./requests.js";
-import "./App.css";
+import React from 'react';
+import Row from './Row.js';
+import Banner from './Banner.js';
+import Nav from './Nav.js';
+import requests from './requests.js';
+import './App.css';
 
 function App() {
   return (
     <div className="app">
+      <Nav />
       <Banner />
       <Row
         title="NETFLIX ORIGINALS"
