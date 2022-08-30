@@ -22,5 +22,5 @@
 
   - [Redux](https://www.youtube.com/watch?v=yjuwpf7VH74)
 
-- prac-redux-toolkit
-  - [React Redux Toolkit with Project | Redux Axios Tutorial](https://www.youtube.com/watch?v=EnIRyNT2PMI)
+- devlee-redux
+  - [리액트 리덕스 (Redux) 튜토리얼 순한맛](https://www.youtube.com/watch?v=wSbjROmXTaY)
