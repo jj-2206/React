@@ -1,90 +1,40 @@
 import React from "react";
-import "./style.css";
-import { createStore } from "redux";
+// import { legacy_createStore as createStore } from "redux";
 import { Provider, useSelector, useDispatch } from "react-redux";
+import store from "./store";
+import { up, down } from "./counterSlice";
 
-function reducer(currentState, action) {
-  if (currentState === undefined) {
-    return {
-      number: 1,
-    };
-    // 기본 state 값 설정
-  }
-  const newState = { ...currentState };
-  if (action.type === "PLUS") {
-    newState.number++;
-  }
-  return newState;
+function Counter() {
+  const dispatch = useDispatch();
+  const count = useSelector((state) => {
+    return state.counter.value;
+  });
+  return (
+    <div>
+      <button
+        onClick={() => {
+          dispatch(up(2));
+        }}
+      >
+        +
+      </button>
+      <button
+        onClick={() => {
+          dispatch(down(1));
+        }}
+      >
+        -
+      </button>
+      {count}
+    </div>
+  );
 }
-const store = createStore(reducer);
-
 export default function App() {
   return (
-    <div id="container">
-      <h1>Root</h1>
-      <div id="grid">
-        <Provider store={store}>
-          <Left1></Left1>
-          <Right1></Right1>
-        </Provider>
+    <Provider store={store}>
+      <div>
+        <Counter></Counter>
       </div>
-    </div>
-  );
-}
-function Left1(props) {
-  return (
-    <div>
-      <h1>Left1 </h1>
-      <Left2></Left2>
-    </div>
-  );
-}
-function Left2(props) {
-  console.log("2");
-  return (
-    <div>
-      <h1>Left2 : </h1>
-      <Left3></Left3>
-    </div>
-  );
-}
-function Left3(props) {
-  console.log("3");
-  const number = useSelector((state) => state.number);
-  return (
-    <div>
-      <h1>Left3 : {number}</h1>
-    </div>
-  );
-}
-function Right1(props) {
-  return (
-    <div>
-      <h1>Right1</h1>
-      <Right2></Right2>
-    </div>
-  );
-}
-function Right2(props) {
-  return (
-    <div>
-      <h1>Right2</h1>
-      <Right3></Right3>
-    </div>
-  );
-}
-function Right3(props) {
-  const dispatch = useDispatch();
-  return (
-    <div>
-      <h1>Right3</h1>
-      <input
-        type="button"
-        value="+"
-        onClick={() => {
-          dispatch({ type: "PLUS" });
-        }}
-      ></input>
-    </div>
+    </Provider>
   );
 }
