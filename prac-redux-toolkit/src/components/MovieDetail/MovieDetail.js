@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAsyncMovieOrShowDetail,
   getSelectedMovieOrShow,
+  removeSelectedMovieOrShow,
 } from "../../features/movies/movieSlice";
 import { FaStar, FaThumbsUp, FaFilm, FaCalendarAlt } from "react-icons/fa";
 import "./MovieDetail.scss";
@@ -15,6 +16,9 @@ function MovieDetail() {
   console.log(data);
   useEffect(() => {
     dispatch(fetchAsyncMovieOrShowDetail(imdbID));
+    return () => {
+      dispatch(removeSelectedMovieOrShow());
+    };
   }, [dispatch, imdbID]);
   return (
     <div className="movie-section">
