@@ -23,4 +23,8 @@
   - [Redux](https://www.youtube.com/watch?v=yjuwpf7VH74)
 
 - devlee-redux
+
   - [리액트 리덕스 (Redux) 튜토리얼 순한맛](https://www.youtube.com/watch?v=wSbjROmXTaY)
+
+- prac-redux-toolkit
+  - [React Redux Toolkit with Project | Redux Axios 튜토리얼](https://www.youtube.com/watch?v=EnIRyNT2PMI)
